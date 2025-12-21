@@ -141,10 +141,7 @@ app.get('/', (req, res) => {
 
 // Start server
 const server = app.listen(PORT, () => {
-  const address = server.address();
-  const baseUrl = `http://${address.address === '::' ? 'localhost' : address.address}:${address.port}`;
-  console.log(`Server running at: ${baseUrl}`);
+  console.log(`Server running at: http://localhost:${PORT}`);
 });
 
 module.exports = { app, server };
-
