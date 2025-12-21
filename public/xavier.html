@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverSea – Admin Facilities</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/xavier.css" />
+  <script src="./js/extra.js" defer></script>
+  <script src="./js/adminManageFacility.js" defer></script>
+</head>
+<body>
+  <div class="topbar">Admin – Manage Facilities</div>
+  <form id="facilityForm">
+    <h2>Add a New Facility</h2>
+    <input id="facilityId" type="number" placeholder="Facility ID (e.g. 1)" required />
+    <input id="facilityName" placeholder="Facility Name (e.g. Badminton Court)" required />
+    <input id="facilityLocation" placeholder="Location (e.g. Block 3)" required />
+    <textarea id="facilityDescription" placeholder="Description"></textarea>
+    <input id="facilityOpeningHours" placeholder="Opening Hours (e.g. 10:00 - 22:00)" />
+    <input id="facilityOpeningDays" placeholder="Opening Days (e.g. Monday - Sunday)" />
+    <input id="facilityImage1" placeholder="Image 1 URL" />
+    <input id="facilityImage2" placeholder="Image 2 URL" />
+    <input id="facilityImage3" placeholder="Image 3 URL" />
+    <button type="button" onclick="addFacility()">Add Facility</button>
+  </form>
+  <h2>Existing Facilities</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Facility Name</th>
+        <th>Location</th>
+        <th>Opening Hours</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="facilitiesBody">
+      <tr>
+        <td colspan="5" class="center muted">Loading facilities...</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button id="logoutBtn" onclick="logOut()">Logout</button>
+
+  <script src="./js/xavier.js"></script>
+
+</body>
+</html>

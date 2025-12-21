@@ -1,0 +1,13 @@
+* text=auto eol=lf
+ 
+*.js   text
+*.json text
+*.html text
+*.css  text
+ 
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+ 
+package-lock.json merge=ours

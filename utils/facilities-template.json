@@ -1,0 +1,13 @@
+[
+  {
+    "facility_id": "1",
+    "facility_name": "Badminton Court",
+    "description": "Beat some shuttlecocks today!",
+    "location": "Block 3",
+    "openinghours": "12:00 - 22:00",
+    "openingdays": "Monday - Sunday",
+    "image1": "/images/facility-default.png",
+    "image2": "/images/facility-default.png",
+    "image3": "/images/facility-default.png"
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "bookingId": 1762935613268,
+    "userId": "u1",
+    "facilityId": "1",
+    "bookingDate": "2025-11-18",
+    "bookingTime": "13:00",
+    "createdAt": "2025-11-12T08:20:12.613Z",
+    "status": 1
+  }
+]

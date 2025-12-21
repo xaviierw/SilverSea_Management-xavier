@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverSea – Home</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/home.css" />
+</head>
+<body>
+  <div class="topbar">Slot Page</div>
+
+  <div class="booking-container">
+    <h2>Book Your Slot</h2>
+    
+    <label for="dateSelect">Select Date:</label>
+    <select id="dateSelect">
+      <!-- Dates will be injected here -->
+    </select>
+
+    <label for="timeSelect">Select Time:</label>
+    <select id="timeSelect">
+      <!-- Times will be injected here -->
+    </select>
+
+    <div class="booking-summary" id="bookingSummary">
+      Please select date and time.
+    </div>
+
+    <button class="confirm-btn" id="confirmBookBtn" onclick="handleConfirmBooking()">Confirm Booking</button>
+  </div>
+
+  <script src="./js/slots.js"></script>
+  <script src="./js/kahbao.js"></script>
+</body>
+</html>

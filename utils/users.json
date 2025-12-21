@@ -1,0 +1,23 @@
+[
+  {
+    "id": "u1",
+    "name": "Xavier Wong",
+    "email": "test@gmail.com",
+    "role": "resident",
+    "password": "$2a$12$SrfwlfV2dAEKOpxFx7kGgeNv3tp7bdV09JOG43uF4z6Oihi7db1zG" 
+  },
+  {
+    "id": "u2",
+    "name": "Bob",
+    "email": "admin@silversea.com",
+    "role": "admin",
+    "password": "$2a$12$SrfwlfV2dAEKOpxFx7kGgeNv3tp7bdV09JOG43uF4z6Oihi7db1zG"
+  },
+  {
+    "id": "u1",
+    "name": "Wong",
+    "email": "test1@gmail.com",
+    "role": "resident",
+    "password": "$2a$12$SrfwlfV2dAEKOpxFx7kGgeNv3tp7bdV09JOG43uF4z6Oihi7db1zG" 
+  }
+]

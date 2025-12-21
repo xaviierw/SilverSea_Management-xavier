@@ -1,0 +1,202 @@
+:root {
+  --bg: #f5f6fa;
+  --ink: #111827;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --border: #d1d5db;
+  --table-row: #f9fafb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Top bar */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 40px;
+  background: #0e0f12;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #1f242c;
+  z-index: 10;
+}
+
+/* Page shell */
+.shell {
+  max-width: 1000px;
+  margin: 80px auto 40px;
+  padding: 0 24px;
+}
+
+/* Main layout */
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Illustration + title */
+.hero-block {
+  text-align: center;
+}
+
+.hero-img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.hero-block h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Bookings section */
+.bookings-section {
+  width: 100%;
+}
+
+.bookings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bookings-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* Button */
+.btn-primary {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+/* Table */
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.12);
+}
+
+.bookings-table th,
+.bookings-table td {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bookings-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.bookings-table tr:nth-child(even) td {
+  background: var(--table-row);
+}
+
+.bookings-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .shell {
+    padding: 0 12px;
+  }
+
+  .bookings-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    align-self: flex-end;
+  }
+
+  .hero-block h1 {
+    font-size: 22px;
+  }
+}
+
+/* Modal base */
+.modal {
+  position: fixed;
+  inset: 0; /* top/right/bottom/left = 0 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  z-index: 50;
+}
+
+/* Hidden state */
+.hidden {
+  display: none;
+}
+
+/* Modal content box */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Continue button */
+.continue-btn {
+  padding: 8px 16px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.continue-btn:hover {
+  background: #1d4ed8;
+}

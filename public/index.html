@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverSea — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+  <div class="topbar">Login</div>
+
+  <main class="page">
+    <section class="card" aria-label="Login form">
+      <div class="brand">
+        <a href="home.html">
+          <img src="./images/logo.png" alt="BookitNow Logo" class="brand-logo" />
+        </a>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button
+          class="tab active"
+          id="tab-resident"
+          data-mode="resident"
+          type="button"
+          role="tab"
+          aria-selected="true"
+        >
+          Resident
+        </button>
+        <button
+          class="tab"
+          id="tab-admin"
+          data-mode="admin"
+          type="button"
+          role="tab"
+          aria-selected="false"
+        >
+          Admin
+        </button>
+      </div>
+
+      <h2 class="login-title" id="loginTitle">Resident Login</h2>
+
+      <div class="field">
+        <label class="label" for="email">Login</label>
+        <div class="input">
+          <input id="email" type="email" placeholder="Email" autocomplete="username" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="password">Password</label>
+        <div class="input">
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+          <span id="togglePwd" class="eye" title="Show/Hide password">👁️</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="signinBtn">Sign-In</button>
+      <button class="btn btn-ghost" id="registerBtn">Registration for Residents</button>
+    </section>
+  </main>
+
+  <script src="./js/login.js"></script>
+</body>
+</html>

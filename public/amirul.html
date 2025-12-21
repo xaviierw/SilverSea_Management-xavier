@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverSea – Modify Booking</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/home.css" />
+</head>
+<body onload="loadBookingForEdit()">
+  <div class="topbar">Modify Booking</div>
+
+  <div class="booking-container">
+    <h2>Modify Your Booking</h2>
+
+    <p><strong>Facility:</strong> <span id="facilityNameText"></span></p>
+    <p><strong>Current Booking:</strong> <span id="currentBookingText"></span></p>
+
+    <label for="dateSelect">Select Date:</label>
+    <select id="dateSelect">
+      <!-- Dates will be injected here -->
+    </select>
+
+    <label for="timeSelect">Select Time:</label>
+    <select id="timeSelect">
+      <!-- Times will be injected here -->
+    </select>
+
+    <div class="booking-summary" id="editSummary">
+      Update the booking date and time (within 7 days of the original date), then click "Update Booking".
+    </div>
+
+    <button class="confirm-btn" id="updateButton" onclick="updateBooking()">
+      Update Booking
+    </button>
+    <button class="confirm-btn" onclick="window.location.href='home.html'">
+      Back to Home
+    </button>
+  </div>
+
+  <script src="./js/editBooking.js"></script>
+  <script src="./js/amirul.js"></script>
+</body>
+</html>

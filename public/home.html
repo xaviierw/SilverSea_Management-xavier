@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SilverSea – Home</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/home.css" />
+</head>
+<body>
+  <div class="topbar">Home Page</div>
+
+  <div class="shell">
+    <main class="home-main">
+      <section class="hero-block">
+        <img src="./images/banner2.webp" alt="Residents booking facilities" class="hero-img" />
+        <h1>SilverSea Facility Booking</h1>
+      </section>
+
+      <section class="bookings-section">
+        <div class="bookings-header">
+          <h2>Your Current Bookings</h2>
+          <button id="bookFacilityBtn" class="btn-primary">Book a Facility</button>
+        </div>
+
+        <table class="bookings-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Facility</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Action</th> <!-- NEW: for Modify button -->
+            </tr>
+          </thead>
+          <tbody id="bookingsBody">
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <div id="bookingModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <div id="modalBody">
+        <!-- Booking summary injected by JS -->
+      </div>
+      <div class="modal-actions">
+        <button id="ContinueBtn" class="continue-btn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/home.js"></script>
+</body>
+</html>
