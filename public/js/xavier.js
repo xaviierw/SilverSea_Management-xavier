@@ -18,8 +18,9 @@ async function addFacility() {
     return
   }
 
-  if (!/^[0-9]+$/.test(jsonData.facility_id)) {
-    alert('Facility ID must contain numbers only (e.g. 1, 2, 101)')
+  // ✅ REQUIRED CHANGE: allow any chars, enforce max length 10
+  if (jsonData.facility_id.length > 10) {
+    alert('Facility ID must not exceed 10 characters')
     return
   }
 
@@ -28,8 +29,20 @@ async function addFacility() {
     return
   }
 
+  // ✅ REQUIRED CHANGE: enforce max length 25
+  if (jsonData.facility_name.length > 25) {
+    alert('Facility name must not exceed 25 characters')
+    return
+  }
+
   if (!jsonData.location) {
     alert('Facility location is required!')
+    return
+  }
+
+  // ✅ REQUIRED CHANGE: enforce max length 25
+  if (jsonData.location.length > 25) {
+    alert('Facility location must not exceed 25 characters')
     return
   }
 
@@ -57,7 +70,6 @@ async function addFacility() {
       }
     }
 
-    // Reset the form after successful add
     const form = qs('#facilityForm')
     if (form) {
       form.reset()
@@ -68,4 +80,3 @@ async function addFacility() {
     alert('Unable to add facility! (network or server error)')
   }
 }
-

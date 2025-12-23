@@ -28,6 +28,25 @@ async function addFacility(req, res) {
         .status(400)
         .json({ message: 'facility_id, facility_name and location are required' })
     }
+    
+    if (String(facility_id).length > 10) {
+      return res
+        .status(400)
+        .json({ message: 'Facility ID must not exceed 10 characters' })
+    }
+
+    if (String(facility_name).length > 25) {
+      return res
+        .status(400)
+        .json({ message: 'Facility name must not exceed 25 characters' })
+    }
+
+    if (String(location).length > 25) {
+      return res
+        .status(400)
+        .json({ message: 'Facility location must not exceed 25 characters' })
+    }
+    // ✅ END REQUIRED CHANGE
 
     const facilities = await readFacilities()
 
