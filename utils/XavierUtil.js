@@ -7,7 +7,7 @@ const FACILITIES_FILE = path.join(__dirname, 'facilities.json')
 async function readFacilities() {
   try {
     const data = await fs.readFile(FACILITIES_FILE, 'utf8')
-    return JSON.parse(data || '[]')
+    return JSON.parse(data)
   } catch (err) {
     if (err.code === 'ENOENT') return []
     throw err
@@ -46,7 +46,6 @@ async function addFacility(req, res) {
         .status(400)
         .json({ message: 'Facility location must not exceed 25 characters' })
     }
-    // ✅ END REQUIRED CHANGE
 
     const facilities = await readFacilities()
 

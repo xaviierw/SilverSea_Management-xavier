@@ -258,4 +258,30 @@ describe("Unit Tests for Facility Utils", () => {
 
     expect(fs.writeFile).not.toHaveBeenCalled();
     });
+
+    it("addFacility should treat ENOENT as empty file and still create facility", async () => {
+    const err = new Error("File not found");
+    err.code = "ENOENT";
+
+    fs.readFile.mockRejectedValueOnce(err);
+    fs.writeFile.mockResolvedValueOnce();
+
+    const req = {
+      body: {
+        facility_id: "FAC-010",
+        facility_name: "Tennis Court",
+        location: "Block 2",
+      },
+    };
+
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await addFacility(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(fs.writeFile).toHaveBeenCalled();
+  });
 });
