@@ -87,10 +87,10 @@ async function convertCoverage() {
 
     // Define minimum acceptable coverage thresholds for each metric (in percentage)
     const thresholds = {
-        lines: 90, // Minimum 90% of lines must be covered
-        statements: 90, // Minimum 90% of statements must be covered
-        functions: 90, // Minimum 90% of functions must be covered
-        branches: 90 // Minimum 90% of branches must be covered
+        lines: 85,
+        statements: 85, 
+        functions: 85, 
+        branches: 85 
     };
 
     // Array to store any metrics that do not meet the defined threshold

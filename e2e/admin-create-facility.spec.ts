@@ -120,34 +120,92 @@ test.describe("Admin Create Facility", () => {
     await page.click("#facilityForm button:has-text('Add Facility')");
   });
 
+  // Opening hours format check
+  test("shows alert when Opening Hours format is invalid", async ({ page }) => {
+    await page.fill("#facilityId", `OH${Date.now()}`.slice(0, 10));
+    await page.fill("#facilityName", "Gym");
+    await page.fill("#facilityLocation", "Block 1");
+    await page.fill("#facilityOpeningHours", "10am - 10pm");
+    await page.fill("#facilityOpeningDays", "Monday - Sunday");
+
+    page.once("dialog", (dialog) => {
+      expect(dialog.message()).toBe(
+        "Opening Hours must be in format HH:MM - HH:MM (e.g. 10:00 - 22:00)"
+      );
+      dialog.accept();
+    });
+
+    await page.click("#facilityForm button:has-text('Add Facility')");
+  });
+
+  // Opening hours boundary check (start time must be earlier than end time)
+  test("shows alert when Opening Hours start time is later than end time", async ({ page }) => {
+    await page.fill("#facilityId", `OH${Date.now()}`.slice(0, 10));
+    await page.fill("#facilityName", "Gym");
+    await page.fill("#facilityLocation", "Block 1");
+    await page.fill("#facilityOpeningHours", "22:00 - 10:00");
+    await page.fill("#facilityOpeningDays", "Monday - Sunday");
+
+    page.once("dialog", (dialog) => {
+      expect(dialog.message()).toBe("Opening Hours start time must be earlier than end time");
+      dialog.accept();
+    });
+
+    await page.click("#facilityForm button:has-text('Add Facility')");
+  });
+
+  test("shows alert when Opening Hours has invalid time values", async ({ page }) => {
+    await page.fill("#facilityId", `OH${Date.now()}`.slice(0, 10));
+    await page.fill("#facilityName", "Gym");
+    await page.fill("#facilityLocation", "Block 1");
+    await page.fill("#facilityOpeningHours", "24:00 - 10:00");
+    await page.fill("#facilityOpeningDays", "Monday - Sunday");
+
+  page.once("dialog", (dialog) => {
+    expect(dialog.message()).toBe("Opening Hours has invalid time values (00:00 to 23:59 only)");
+    dialog.accept();
+  });
+
+    await page.click("#facilityForm button:has-text('Add Facility')");
+  });
+
   test("shows error when facility ID already exists (duplicate)", async ({ page }) => {
     const dupId = `DUP${Date.now()}`.slice(0, 10);
 
-    // Create once (success)
+    // 1) First create: accept the confirmation/success dialog only
+    page.once("dialog", d => d.accept());
+
     await page.fill("#facilityId", dupId);
     await page.fill("#facilityName", "First Facility");
     await page.fill("#facilityLocation", "Block A");
-    await page.fill("#facilityDescription", "Desc");
     await page.fill("#facilityOpeningHours", "12:00 - 22:00");
-    await page.fill("#facilityOpeningDays", "Monday - Sunday");
-
-    page.once("dialog", (d) => d.accept());
     await page.click("#facilityForm button:has-text('Add Facility')");
 
     const row = page.locator("#facilitiesBody tr", { hasText: dupId });
     await row.waitFor({ state: "visible", timeout: 30000 });
 
-    // Create again (should fail with duplicate)
+    // 2) Second create: ASSERT + accept the duplicate dialog (only once)
+    page.once("dialog", d => {
+      expect(d.message()).toBe("Facility ID already exists");
+      d.accept();
+    });
+
     await page.fill("#facilityId", dupId);
     await page.fill("#facilityName", "Duplicate Facility");
     await page.fill("#facilityLocation", "Block X");
-    await page.fill("#facilityDescription", "Desc");
     await page.fill("#facilityOpeningHours", "12:00 - 22:00");
-    await page.fill("#facilityOpeningDays", "Monday - Sunday");
+    await page.click("#facilityForm button:has-text('Add Facility')");
+  });
 
-    page.once("dialog", (dialog) => {
-      expect(dialog.message()).toBe("Facility ID already exists");
-      dialog.accept();
+  test("shows alert on network error", async ({ page }) => {
+    await page.route("**/api/facility", route => route.abort());
+    await page.fill("#facilityId", "NET123");
+    await page.fill("#facilityName", "Gym");
+    await page.fill("#facilityLocation", "Block 1");
+    await page.fill("#facilityOpeningDays", "Monday - Sunday");
+    page.once("dialog", d => {
+      expect(d.message()).toBe("Unable to add facility! (network or server error)");
+      d.accept();
     });
 
     await page.click("#facilityForm button:has-text('Add Facility')");
