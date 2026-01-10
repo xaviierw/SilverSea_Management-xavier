@@ -1,3 +1,5 @@
+import { parseOpeningHours } from './test/validation.js';
+
 const qs = sel => document.querySelector(sel)
 
 // Validate "HH:MM - HH:MM" and ensure start < end

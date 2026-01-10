@@ -172,7 +172,6 @@ test.describe("Admin Create Facility", () => {
   test("shows error when facility ID already exists (duplicate)", async ({ page }) => {
     const dupId = `DUP${Date.now()}`.slice(0, 10);
 
-    // 1) First create: accept the confirmation/success dialog only
     page.once("dialog", d => d.accept());
 
     await page.fill("#facilityId", dupId);
@@ -184,7 +183,6 @@ test.describe("Admin Create Facility", () => {
     const row = page.locator("#facilitiesBody tr", { hasText: dupId });
     await row.waitFor({ state: "visible", timeout: 30000 });
 
-    // 2) Second create: ASSERT + accept the duplicate dialog (only once)
     page.once("dialog", d => {
       expect(d.message()).toBe("Facility ID already exists");
       d.accept();
