@@ -110,8 +110,7 @@ async function addFacility() {
     if (window.loadFacilities) {
       try {
         await window.loadFacilities()
-      } catch (err) {
-      }
+      } catch (err) {}
     }
 
     const form = qs('#facilityForm')
