@@ -1,4 +1,4 @@
-export function parseOpeningHours(input) {
+function parseOpeningHours(input) {
   if (!input) return { ok: true, empty: true };
 
   const m = input.trim().match(/^(\d{2}):(\d{2})\s*-\s*(\d{2}):(\d{2})$/);
@@ -36,3 +36,5 @@ export function parseOpeningHours(input) {
 
   return { ok: true, start, end };
 }
+
+export { parseOpeningHours };
