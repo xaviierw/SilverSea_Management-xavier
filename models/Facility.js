@@ -5,10 +5,7 @@ class Facility {
     description,
     location,
     openinghours,
-    openingdays,
-    image1,
-    image2,
-    image3
+    openingdays
   }) {
     // Basic fields
     this.facility_id = facility_id || Date.now().toString()
@@ -19,11 +16,6 @@ class Facility {
     // Schedule
     this.openinghours = openinghours || '00:00 - 00:00'
     this.openingdays = openingdays || 'Monday - Sunday'
-
-    // Images (default placeholders)
-    this.image1 = image1 || '/images/facility-default.png'
-    this.image2 = image2 || '/images/facility-default.png'
-    this.image3 = image3 || '/images/facility-default.png'
   }
 }
 

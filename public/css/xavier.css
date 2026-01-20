@@ -40,7 +40,7 @@ form textarea {
 
 form button {
   display: inline-block;
-  background-color: #2f88ff;
+  background-color: #1f5fcc; /* Changed this to a contrasting color */
   color: white;
   font-weight: 500;
   border: none;
@@ -51,7 +51,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #1f5fcc;
+  background-color: #174aa3; /* Changed this to a contrasting color when hover*/
 }
 
 /* Table */
