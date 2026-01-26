@@ -46,17 +46,17 @@ const {
 // View Bookings feature (Resident)
 const {
   ViewBookings
-} = require('./utils/viewBookings');
+} = require('./utils/viewBookings')
 
 // View booking by ID (Resident)
 const {
   ViewBookingByIdUtils
-} = require('./utils/viewBookingsById');
+} = require('./utils/viewBookingsById')
 
 // Amirul's Modify feature
 const {
   ModifyBookingUtils
-} = require('./utils/AmirulUtil');
+} = require('./utils/AmirulUtil')
 
 const app = express()
 const PORT = process.env.PORT || 5050
@@ -66,6 +66,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())
 
+// ✅ Health check MUST be before protectHtml
+app.get("/health", (req, res) => {
+  res.status(200).send("ok")
+})
+
 // Disable caching
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
@@ -73,6 +78,9 @@ app.use((req, res, next) => {
   res.set('Expires', '0')
   next()
 })
+
+// ✅ Serve static files BEFORE protectHtml so assets + login.html can load properly
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Protect all HTML pages except login (index.html)
 app.use(protectHtml)
@@ -98,12 +106,9 @@ app.get('/kahbao.html', authRequired(['resident']), (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'kahbao.html'))
 })
 
-app.use(express.static(path.join(__dirname, 'public')))
-
 app.post('/api/login', login)
 app.get('/api/session', authRequired(), getSession)
 app.post('/api/logout', logout)
-
 
 // Resident routes
 app.get('/api/facilities', authRequired(), getAllFacilities)
@@ -117,10 +122,8 @@ app.get('/api/facilities', authRequired(['admin']), getAllTheFacilities)
 app.put('/api/facility/:id', authRequired(['admin']), updateFacility)
 app.delete('/api/facility/:id', authRequired(['admin']), deleteFacility)
 
-
 // Get Facility Slots By ID FEATURE (Resident)
 app.get('/api/facilityslots/:id', authRequired(['resident']), getFacilitySlotsUtils)
-
 
 // KAHBAO CREATE BOOKING FEATURE (Resident)
 app.post('/api/createBooking/:id', authRequired(['resident']), CreateBookingUtils)
@@ -129,19 +132,19 @@ app.post('/api/createBooking/:id', authRequired(['resident']), CreateBookingUtil
 app.get('/api/bookings', authRequired(['resident']), ViewBookings)
 
 // Get booking by ID
-app.get('/api/booking/:id', authRequired(['resident']), ViewBookingByIdUtils);
+app.get('/api/booking/:id', authRequired(['resident']), ViewBookingByIdUtils)
 
 // Amirul Modify Feature (resident)
-app.put('/api/booking/:id', authRequired(['resident']), ModifyBookingUtils);
+app.put('/api/booking/:id', authRequired(['resident']), ModifyBookingUtils)
 
-// Default route
+// ✅ Default route should just serve login.html (NOT startPage)
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/' + startPage);
-});
+  res.sendFile(path.join(__dirname, 'public', 'login.html'))
+})
 
 // Start server
 const server = app.listen(PORT, () => {
-  console.log(`Server running at: http://localhost:${PORT}`);
-});
+  console.log(`Server running at: http://localhost:${PORT}`)
+})
 
-module.exports = { app, server };
+module.exports = { app, server }

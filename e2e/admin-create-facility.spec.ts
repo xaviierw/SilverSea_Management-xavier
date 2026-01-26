@@ -1,7 +1,7 @@
 import './playwright-coverage.js'
 import { test, expect } from "@playwright/test";
 
-const BASE_URL = "http://localhost:5050";
+const BASE_URL = process.env.BASE_URL || "http://localhost:5050";
 
 test.describe("Admin Create Facility", () => {
   test.beforeEach(async ({ page }) => {
