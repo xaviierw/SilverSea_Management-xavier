@@ -86,8 +86,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Protect all HTML pages except login (index.html)
 app.use(protectHtml)
 
-const statusMonitor = require('express-status-monitor');
-app.use(statusMonitor());
+if (process.env.NODE_ENV !== "test") {
+  const statusMonitor = require("express-status-monitor")
+  app.use(statusMonitor())
+}
 
 // Routes for HTML pages
 app.get('/home.html', authRequired(['resident']), (req, res) => {

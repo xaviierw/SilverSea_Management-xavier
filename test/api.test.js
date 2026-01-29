@@ -1,3 +1,4 @@
+process.env.NODE_ENV = "test"
 const request = require("supertest");
 const fs = require("fs").promises;
 const { app, server } = require("../index");
