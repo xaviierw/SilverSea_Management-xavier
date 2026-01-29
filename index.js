@@ -147,14 +147,10 @@ app.get('/', (req, res) => {
 })
 
 // Start server
-let server = null
-
-if (require.main === module) {
-  server = app.listen(PORT, () => {
-    console.log(`Server running at: http://localhost:${PORT}`)
-    logger.info(`Demo project at: http://localhost:${PORT}!`)
-    logger.error(`Example of error log`)
-  })
-}
+const server = app.listen(PORT, () => {
+  console.log(`Server running at: http://localhost:${PORT}`)
+  logger.info(`Demo project at: http://localhost:${PORT}!`);
+  logger.error(`Example of error log`)
+})
 
 module.exports = { app, server }

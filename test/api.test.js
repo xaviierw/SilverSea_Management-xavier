@@ -2,7 +2,7 @@ const request = require("supertest");
 const fs = require("fs").promises;
 const { app, server } = require("../index");
 
-afterAll(() => server.close());
+afterAll((done) => server.close(done));
 
 describe("Silversea Management API - Facilities", () => {
   let agent;
