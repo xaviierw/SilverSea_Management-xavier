@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const logger = require('./logger');
 
 // Auth route handlers
 const {
@@ -85,6 +86,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Protect all HTML pages except login (index.html)
 app.use(protectHtml)
 
+const statusMonitor = require('express-status-monitor');
+app.use(statusMonitor());
+
 // Routes for HTML pages
 app.get('/home.html', authRequired(['resident']), (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'))
@@ -145,6 +149,8 @@ app.get('/', (req, res) => {
 // Start server
 const server = app.listen(PORT, () => {
   console.log(`Server running at: http://localhost:${PORT}`)
+  logger.info(`Demo project at: http://localhost:${PORT}!`);
+  logger.error(`Example of error log`)
 })
 
 module.exports = { app, server }
