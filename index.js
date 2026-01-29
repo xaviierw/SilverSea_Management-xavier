@@ -36,7 +36,7 @@ const {
 // Get Facility Slots By ID feature
 const {
   getFacilitySlotsUtils
-} = require('./utils/GetFacilitySlotsById') 
+} = require('./utils/getFacilitySlotsById') 
 
 // KahBao's Create Booking Feature
 const {
